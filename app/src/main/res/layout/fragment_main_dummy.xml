@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$DummySectionFragment" >
+    <!--
+    android:layout_alignParentRight="true"
+    android:orientation="horizontal"
+    android:layoutDirection="rtl"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"-->
+<!-- 
+    <TextView
+        android:id="@+id/section_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+ -->
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <ImageView
+            android:id="@+id/imageQuran"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/Quran_Page"
+            android:scaleType="centerCrop"
+            android:src="@drawable/q002" />
+    </ScrollView>
+
+<!--
+    android:orientation="horizontal"
+    android:layout_alignParentRight="true"
+    android:layoutDirection="rtl"-->
+</RelativeLayout>

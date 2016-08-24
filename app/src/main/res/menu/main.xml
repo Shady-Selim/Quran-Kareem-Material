@@ -1,14 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/action_local"
+        android:title="@string/local"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_bookmark"
         android:title="@string/bookmark"
         android:icon="@drawable/ic_bookmark_border_24dp"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_about"
         android:title="@string/about_the_developer"
         android:orderInCategory="100"
         android:icon="@drawable/ic_help_outline_black_24dp"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>

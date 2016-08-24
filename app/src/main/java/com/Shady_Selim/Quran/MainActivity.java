@@ -1,6 +1,6 @@
 package com.Shady_Selim.Quran;
 
-//import java.util.Locale;
+import java.util.Locale;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -9,12 +9,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-//import android.content.res.Configuration;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -31,7 +32,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 		Editor edit = prefs.edit();
 		edit.putInt("LastPage", mViewPager.getCurrentItem());
 		if (edit.commit()) {
-			Toast.makeText(this, R.string.save_success , Toast.LENGTH_SHORT).show();
+//			Toast.makeText(this, R.string.save_success , Toast.LENGTH_SHORT).show();
 		}/*else{
 			Toast.makeText(this, R.string.save_failed , Toast.LENGTH_SHORT).show();
 		}*/
@@ -194,7 +194,7 @@ if (doubleBackToExitPressedOnce) {
 					super.onBackPressed();
 				}
 				this.doubleBackToExitPressedOnce = true;
-				Toast.makeText(this, R.string.back_exit, Toast.LENGTH_SHORT).show();
+				Snackbar.make(mViewPager,R.string.back_exit, Snackbar.LENGTH_SHORT).show();
 				new Handler().postDelayed(new Runnable() {
 					@Override
 					public void run() {doubleBackToExitPressedOnce=false;}}, 2000);
@@ -220,11 +220,11 @@ if (doubleBackToExitPressedOnce) {
 			String page = cPage.substring(cPage.lastIndexOf(" ")+1, cPage.length());
 			if (page.equals(currentPageN)){//((pageNumber[i]).equals(currentPageN)) {
 				item.setIcon(R.drawable.ic_bookmark_24dp);
-				item.setTitle(getResources().getString(R.string.bookmarked));
+				item.setTitle(getString(R.string.bookmarked));
 				break;
 			}else {
 				item.setIcon(R.drawable.ic_bookmark_border_24dp);
-				item.setTitle(getResources().getString(R.string.bookmark));
+				item.setTitle(getString(R.string.bookmark));
 			}
 		}
 	}
@@ -273,17 +273,17 @@ if (doubleBackToExitPressedOnce) {
 			String[] hezPart = {"1/4","1/2","3/4"};
 			for(int i=0; i < hezbPages.length; i++){
 				if(hezbPages[i] == page){
-					currentJuz = getResources().getString(R.string.juz) + " " + (Integer.valueOf(i/8)+1);
-					currentHezb = getResources().getString(R.string.hezb) + " " + (Integer.valueOf(i/4)+1);
+					currentJuz = getString(R.string.juz) + " " + (Integer.valueOf(i/8)+1);
+					currentHezb = getString(R.string.hezb) + " " + (Integer.valueOf(i/4)+1);
 					if(i%4 != 0){
 						currentHezb = hezPart[i%4 - 1] + " " + currentHezb;
 					}
-					Toast.makeText(getBaseContext(), currentHezb,Toast.LENGTH_SHORT).show();
+					Snackbar.make(mViewPager,currentHezb, Snackbar.LENGTH_SHORT).show();
 					break;
 				}
 				else if (hezbPages[i] > page) {
-					currentJuz = getResources().getString(R.string.juz) + " " + (Integer.valueOf(i/8)+1);
-					currentHezb = getResources().getString(R.string.hezb) + " " + (Integer.valueOf(i/4)+1);
+					currentJuz = getString(R.string.juz) + " " + (Integer.valueOf(i/8)+1);
+					currentHezb = getString(R.string.hezb) + " " + (Integer.valueOf(i/4)+1);
 					if((i-1)%4 != 0){
 						currentHezb = hezPart[(i-1)%4 - 1] + " " + currentHezb;
 					}
@@ -386,7 +386,7 @@ if (doubleBackToExitPressedOnce) {
 			Integer[] madinan = {2, 3, 4, 5, 8, 9, 13, 22, 24, 33, 47, 48, 49, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 76, 98, 110};
 			String[] surahArray = getResources().getStringArray(R.array.surahs);
 			for(int i=0; i< surahArray.length;  i++){//Arrays.asList(madinan).contains(i+1)
-					String tanjil = (contains(madinan, i+1))?getResources().getString(R.string.medinan):getResources().getString(R.string.meccan);
+					String tanjil = (contains(madinan, i+1))?getString(R.string.medinan):getString(R.string.meccan);
 					surahItems.add(i+1 + " - " + surahArray[i] + " " + tanjil);
 			}
 			CharSequence[] Surahs = surahItems.toArray(new CharSequence[surahItems.size()]);
@@ -431,7 +431,7 @@ if (doubleBackToExitPressedOnce) {
 			final int[] page = getResources().getIntArray(R.array.hezb);
 			List<String> hezbItems = new ArrayList<>();
 			String[] hezPart = {"1/4","1/2","3/4"};
-			String hezbString = getResources().getString(R.string.hezb);
+			String hezbString = getString(R.string.hezb);
 			for(int i=0; i< page.length;  i++){
 				if(i%4 == 0){
 					hezbItems.add(hezbString + " " + (Integer.valueOf(i/4) +1));
@@ -457,7 +457,7 @@ if (doubleBackToExitPressedOnce) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			List<String> juzItems = new ArrayList<>();
 			int j=1;
-			String juzString = getResources().getString(R.string.juz);
+			String juzString = getString(R.string.juz);
 			int[] hezb = getResources().getIntArray(R.array.hezb);
 			final int[] page = new int[30];
 			for(int i=0; i< hezb.length;  i++){
@@ -507,6 +507,7 @@ if (doubleBackToExitPressedOnce) {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		DialogFragment newFragment;
+		Editor edit;
 		switch (item.getItemId()) {
 	    /*
 	        case android.R.id.home:
@@ -516,8 +517,23 @@ if (doubleBackToExitPressedOnce) {
 	            startActivity(intent);
 	            return true;
 	        */
+			case R.id.action_local:
+				edit = prefs.edit();
+				edit.putInt("LastPage", mViewPager.getCurrentItem());
+				if (edit.commit()) {
+					Locale locale = new Locale("ar");
+					if (item.getTitle().equals("En")){
+						locale = new Locale("en");
+					}
+					Locale.setDefault(locale);
+					Configuration config = new Configuration();
+					config.locale = locale;
+					getBaseContext().getResources().updateConfiguration(config,getResources().getDisplayMetrics());
+					startActivity(new Intent(this, MainActivity.class));
+					finish();
+				}
+				return true;
 			case R.id.action_about:
-				//Toast.makeText(this, "You clicked me!", Toast.LENGTH_SHORT).show();
 				newFragment = new AboutDeveloper();
 				newFragment.show(getSupportFragmentManager(), "what");
 				return true;
@@ -525,21 +541,21 @@ if (doubleBackToExitPressedOnce) {
 				/*setPage.clear();
 				setName.clear();*/
 //				MenuItem item = menu.findItem(R.id.action_bookmark);
-				String nameFormat = currentSurah + ", " + currentJuz + ", " + currentHezb + ", " + getResources().getString(R.string.page) + " " + currentPageN;
-				if (item.getTitle() == getResources().getString(R.string.bookmarked)) {
+				String nameFormat = currentSurah + ", " + currentJuz + ", " + currentHezb + ", " + getString(R.string.page) + " " + currentPageN;
+				if (item.getTitle() == getString(R.string.bookmarked)) {
 					item.setIcon(R.drawable.ic_bookmark_border_24dp);
-					item.setTitle(getResources().getString(R.string.bookmark));
+					item.setTitle(getString(R.string.bookmark));
 					setMark.remove(nameFormat);
 				} else {
 					item.setIcon(R.drawable.ic_bookmark_24dp);
-					item.setTitle(getResources().getString(R.string.bookmarked));
+					item.setTitle(getString(R.string.bookmarked));
 					setMark.add(nameFormat);
-					Editor edit = prefs.edit();
+					edit = prefs.edit();
 					edit.putStringSet("Bookmarks", setMark);
 					if (edit.commit()) {
-						Toast.makeText(this, R.string.bookmark_save_success , Toast.LENGTH_SHORT).show();
+						Snackbar.make(mViewPager,R.string.bookmark_save_success, Snackbar.LENGTH_SHORT).show();
 					}else{
-						Toast.makeText(this, R.string.bookmark_error , Toast.LENGTH_SHORT).show();
+						Snackbar.make(mViewPager,R.string.bookmark_error, Snackbar.LENGTH_SHORT).show();
 					}
 				}
 				/*

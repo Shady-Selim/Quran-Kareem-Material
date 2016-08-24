@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
@@ -12,7 +12,7 @@
         <item name="icons">@color/icons</item>-->
         <item name="divider">@color/divider</item>
         <!--<item name="black_overlay">@color/black_overlay</item>-->
-        <item name="android:navigationBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">@color/navigationBarColor</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -28,6 +28,10 @@
         <item name="fab_colorNormal">@color/navigationBarColor</item>
         <item name="fab_colorPressed">@color/colorAccent</item>
         <item name="fab_colorRipple">#66FFFFFF</item>
+    </style>
+
+    <style name="FabMenu">
+        <item name="menu_labels_position">left</item>
     </style>
 
 </resources>

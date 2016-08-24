@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Quran (Egypt Print)</string>
     <string name="about_the_developer">About the Developer</string>
+    <string name="local">ع</string>
     <string name="go_to">Go to</string>
     <string name="bookmark">Bookmark</string>
     <string name="bookmarked">Bookmark-ed</string>
@@ -57,7 +57,7 @@
     <string name="as_Sajdah">As-sajdah</string>
     <string name="al_Ahzab">Al-ahzab</string>
     <string name="Saba">Saba\`</string>
-    <string name="Fatir">FaaTir</string>
+    <string name="Fatir">Faatir</string>
     <string name="Ya_Sin">Yaa seen</string>
     <string name="as_Saffat">As-Saaffaat</string>
     <string name="Sad">Saad</string>
@@ -68,9 +68,9 @@
     <string name="az_Zukhruf">Azl-zukhruf</string>
     <string name="ad_Dukhan">Ad-dukhaan</string>
     <string name="al_Jathiyah">Al-jaathiyah</string>
-    <string name="al_Ahqaf">Al-aHqaaf</string>
+    <string name="al_Ahqaf">Al-ahqaaf</string>
     <string name="Muhammad">Muhammad</string>
-    <string name="al_Fath">Al-fatH</string>
+    <string name="al_Fath">Al-fath</string>
     <string name="al_Hujurat">Al-Hujuraat</string>
     <string name="Qaf">Qaaf</string>
     <string name="ad_Dhariyat">Ad-dhaariyaat</string>
@@ -115,7 +115,7 @@
     <string name="al_Balad">Al-balad</string>
     <string name="ash_Shams">Ash-shams</string>
     <string name="al_Layl">Al-lail</string>
-    <string name="ad_Duha">Ad-DuHaa</string>
+    <string name="ad_Duha">Ad-Duhaa</string>
     <string name="ash_Sharh">Ash-Sharh</string>
     <string name="at_Tin">At-Teen</string>
     <string name="al_Alaq">Al-\`alaq</string>
@@ -134,8 +134,7 @@
     <string name="al_Kafirun">Al-kaafiroon</string>
     <string name="an_Nasr">An-nasr</string>
     <string name="al_Masad">Al-masad</string>
-    <string name="al_Ikhlas">Al-ikhlaaS</string>
+    <string name="al_Ikhlas">Al-ikhlaas</string>
     <string name="al_Falaq">Al-falaq</string>
     <string name="an_Nas">An-naas</string>
-
 </resources>

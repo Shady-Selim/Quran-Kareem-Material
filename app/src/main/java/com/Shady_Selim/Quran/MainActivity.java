@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 	static AppBarLayout appBarLayout;
     static boolean hideBar = false;
 	public int pagesCount;
-	public String currentSurah, currentHezb, currentJuz, currentPageN;
+	public static String currentSurah, currentHezb, currentJuz, currentPageN;
 
 	private static FloatingActionMenu mFab;
 	SharedPreferences prefs;
@@ -83,7 +83,11 @@ public class MainActivity extends AppCompatActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		prefs = getApplicationContext().getSharedPreferences("PocketQuran", 0);
+		prefs = getApplicationContext().getSharedPreferences("Quran", 0);
+		if (prefs.getBoolean("PREFERENCE_FIRST_RUN", true) != false){
+			prefs.edit().clear().commit();
+			prefs.edit().putBoolean("PREFERENCE_FIRST_RUN", false).commit();
+		}
 		mViewPager.setCurrentItem(prefs.getInt("LastPage", pagesCount));
 		setMark = prefs.getStringSet("Bookmarks", new HashSet<String>()) ;
 		appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
@@ -218,11 +222,15 @@ if (doubleBackToExitPressedOnce) {
 		MenuItem item = menu.findItem(R.id.action_bookmark);
 		for(String cPage: setMark){
 			String page = cPage.substring(cPage.lastIndexOf(" ")+1, cPage.length());
-			if (page.equals(currentPageN)){//((pageNumber[i]).equals(currentPageN)) {
+			if (Integer.valueOf(currentPageN) < 1 || Integer.valueOf(currentPageN) > getResources().getInteger(R.integer.lastPage))
+				item.setVisible(false);
+			else if (page.equals(currentPageN)){//((pageNumber[i]).equals(currentPageN)) {
+				item.setVisible(true);
 				item.setIcon(R.drawable.ic_bookmark_24dp);
 				item.setTitle(getString(R.string.bookmarked));
 				break;
 			}else {
+				item.setVisible(true);
 				item.setIcon(R.drawable.ic_bookmark_border_24dp);
 				item.setTitle(getString(R.string.bookmark));
 			}
@@ -259,13 +267,13 @@ if (doubleBackToExitPressedOnce) {
 			int[] surahPages=  getResources().getIntArray(R.array.surahPage);
 			int[] hezbPages=  getResources().getIntArray(R.array.hezb);
 			String[] surahNames = getResources().getStringArray(R.array.surahs);
-			currentPageN = page + "";
+			currentPageN = String.valueOf(page - getResources().getInteger(R.integer.pagesLeading));
 			for(int i=0; i < surahPages.length; i++){
 				if(surahPages[i] == page) {
 					currentSurah = surahNames[i];
 					break;
 				}
-				else if (surahPages[i] > page) {
+				else if (surahPages[i] > page && surahNames[1].equals("1")) {
 					currentSurah = surahNames[i-1];
 					break;
 				}
@@ -281,7 +289,7 @@ if (doubleBackToExitPressedOnce) {
 					Snackbar.make(mViewPager,currentHezb, Snackbar.LENGTH_SHORT).show();
 					break;
 				}
-				else if (hezbPages[i] > page) {
+				else if (hezbPages[i] > page  && hezbPages[1] == 1) {
 					currentJuz = getString(R.string.juz) + " " + (Integer.valueOf(i/8)+1);
 					currentHezb = getString(R.string.hezb) + " " + (Integer.valueOf(i/4)+1);
 					if((i-1)%4 != 0){
@@ -325,13 +333,15 @@ if (doubleBackToExitPressedOnce) {
 			ImageView img = (ImageView) rootView.findViewById(R.id.imageQuran);
 			//int currentPage= 10 - getArguments().getInt(ARG_SECTION_NUMBER) + 1;
 			int currentPage= this.getResources().getInteger(R.integer.pagesCount) - getArguments().getInt(ARG_SECTION_NUMBER) + 1;
-			img.setImageResource(rootView.getResources().getIdentifier("q00"+ Integer.toString(currentPage), "drawable", rootView.getContext().getPackageName()));
+			img.setImageResource(rootView.getResources().getIdentifier("q"+ Integer.toString(currentPage), "drawable", rootView.getContext().getPackageName()));
 			//img.setImageDrawable(rootView.getResources().getDrawable(rootView.getResources().getIdentifier("drawable/q001", null, rootView.getPackageName()))); //getPackageName()
 			img.setOnClickListener(new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
 //						Toast.makeText(getContext(), "Current! " + "I am clicked", Toast.LENGTH_SHORT).show();
-                    if (hideBar){
+					if (Integer.valueOf(currentPageN) > 0)
+					Snackbar.make(getView(),currentSurah +", " + currentHezb +", " + currentJuz +","+ getString(R.string.page) + currentPageN,Snackbar.LENGTH_LONG).show();
+					if (hideBar){
                         appBarLayout.setExpanded(false, true);
                     }else{
                         appBarLayout.setExpanded(true, true);
@@ -497,7 +507,7 @@ if (doubleBackToExitPressedOnce) {
 			builder.setTitle(R.string.bookmark)
 					.setItems(pageName, new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int which) {
-							mViewPager.setCurrentItem(pagesCount - Integer.valueOf(pageNumbers[which].toString()));
+							mViewPager.setCurrentItem(pagesCount - Integer.valueOf(pageNumbers[which].toString()) - getResources().getInteger(R.integer.pagesLeading));
 						}
 					});
 			return builder.create();

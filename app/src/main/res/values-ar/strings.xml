@@ -23,6 +23,10 @@
     <!--<string name="save_failed">خطأ بحفظ الصفحة الأخيرة</string>-->
     <string name="back_exit">أنقر للخلف مرة أخرى للخروج</string>
 
+    <string name="friday">لا تنسى قرأة سورة الكهف يوم الجمعة</string>
+    <string name="werd">أجعل ليومك ورد من القرآن الكريم</string>
+    <string name="rate">لا تنسى تقييم البرنامج في الجوجل بلاي</string>
+
     <string name="al_Fatihah">الفَاتِحَة</string>
     <string name="al_Baqarah">البَقَرَة</string>
     <string name="Al_Imran">آل عِمرَان</string>

@@ -27,7 +27,7 @@
             android:adjustViewBounds="true"
             android:contentDescription="@string/Quran_Page"
             android:scaleType="centerCrop"
-            android:src="@drawable/q002" />
+            android:src="@drawable/q1" />
     </ScrollView>
 
 <!--

@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.Switch;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -41,10 +42,24 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // Check if message contains a data payload.
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
+            if(remoteMessage.getData().get("key") != null){
+                int key;
+                switch (remoteMessage.getData().get("key")){
+                    case "friday":
+                        key = R.string.friday;
+                        break;
+                    case "rate":
+                        key = R.string.rate;
+                        break;
+                    default:
+                        key = R.string.werd;
+                }
+                sendNotification(getString(key));
+            }
         }
 
         // Check if message contains a notification payload.
-        if (remoteMessage.getNotification() != null) {
+        else if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
             sendNotification(remoteMessage.getNotification().getBody());
         }

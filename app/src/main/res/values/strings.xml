@@ -23,6 +23,10 @@
     <!--<string name="save_failed">Sorry couldn\'t save your last page</string>-->
     <string name="back_exit">Click BACK again to exit</string>
 
+    <string name="friday">It\'s Friday, Don\'t forget to read Surah Al-kahf</string>
+    <string name="werd">Remember to read some Ayat of Quran Kareem in your day</string>
+    <string name="rate">Hope you like it. Please rate me in Google Play</string>
+
     <string name="al_Fatihah">Al-faatiHah</string>
     <string name="al_Baqarah">Al-baqarah</string>
     <string name="Al_Imran">Aali-\`imraan</string>
@@ -82,7 +86,7 @@
     <string name="al_Hadid">Al-Hadeed</string>
     <string name="al_Mujadilah">Al-mujaadilah</string>
     <string name="al_Hashr">Al-Hashr</string>
-    <string name="al_Mumtahanah">Al-mumtaHanah</string>
+    <string name="al_Mumtahanah">Al-mumtahanah</string>
     <string name="as_Saff">As-saff</string>
     <string name="al_Jumuah">Al-jumu\`ah</string>
     <string name="al_Munafiqun">Al-munafiqoon</string>

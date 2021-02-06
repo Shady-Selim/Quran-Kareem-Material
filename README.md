@@ -1,5 +1,5 @@
-*(Unmaintained Project) 
-Please find replacement live project in link below
+## (Unmaintained Project) 
+* Please find replacement live project in link below
 
 [https://github.com/Shady-Selim/PocketQuran](https://github.com/Shady-Selim/PocketQuran)
 
